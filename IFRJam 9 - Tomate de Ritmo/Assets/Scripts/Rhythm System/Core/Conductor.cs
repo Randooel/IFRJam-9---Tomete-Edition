@@ -3,16 +3,16 @@ using UnityEngine;
 public class Conductor : MonoBehaviour
 {
     [field: SerializeField] public float SongBpm { get; private set; }
-    [field: SerializeField] public float SecondsPerBeat { get; private set; }
-    [field: SerializeField] public float SongPosition { get; private set; }
-    [field: SerializeField] public float FirstBeatOffset { get; private set; }
-    [field: SerializeField] public float SongPositionInBeats { get; private set; }
     [field: SerializeField] public float BeatsPerLoop { get; private set; }
-    [field: SerializeField] public int CompletedLoops { get; private set; } = 0;
-    [field: SerializeField] public float LoopPositionInBeats { get; private set; }
-    [field: SerializeField] public float ElapsedSongTime { get; private set; }
-    [field: SerializeField] public AudioSource AudioSource { get; private set; }
-    [field: SerializeField] public float LoopPositionInAnalog { get; private set; }
+    public float SecondsPerBeat { get; private set; }
+    public float SongPosition { get; private set; }
+    public float FirstBeatOffset { get; private set; }
+    public float SongPositionInBeats { get; private set; }
+    public int CompletedLoops { get; private set; } = 0;
+    public float LoopPositionInBeats { get; private set; }
+    public float ElapsedSongTime { get; private set; }
+    public AudioSource AudioSource { get; private set; }
+    public float LoopPositionInAnalog { get; private set; }
 
     //Conductor instance
     public static Conductor Instance { get; private set; }
