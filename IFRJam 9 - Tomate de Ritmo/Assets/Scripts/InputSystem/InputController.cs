@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class InputController : MonoBehaviour
 {
     private PlayerInput playerInput;
+    public InputAction LeftClick => playerInput.actions["LeftClick"];
+    public InputAction RightClick => playerInput.actions["RightClick"];
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -11,11 +13,11 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
-        if (playerInput.actions["LeftClick"].WasPressedThisFrame())
+        if (LeftClick.WasPressedThisFrame())
         {
             Debug.Log("Left Click");
         }
-        if (playerInput.actions["RightClick"].WasPressedThisFrame())
+        if (RightClick.WasPressedThisFrame())
         {
             Debug.Log("Right Click");
         }
