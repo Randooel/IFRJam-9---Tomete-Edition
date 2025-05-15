@@ -8072,7 +8072,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615265}
   - {fileID: 8926484042661615269}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661615264}
   m_MasterData:
