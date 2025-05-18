@@ -4,6 +4,7 @@ public class Conductor : MonoBehaviour
 {
     [field: SerializeField] public float SongBpm { get; private set; }
     [field: SerializeField] public float BeatsPerLoop { get; private set; }
+    [field: SerializeField] public AudioManager AudioManager { get; private set; }
     public float SecondsPerBeat { get; private set; }
     public float SongPosition { get; private set; }
     public float FirstBeatOffset { get; private set; }
@@ -11,10 +12,7 @@ public class Conductor : MonoBehaviour
     public int CompletedLoops { get; private set; } = 0;
     public float LoopPositionInBeats { get; private set; }
     public float ElapsedSongTime { get; private set; }
-    public AudioSource AudioSource { get; private set; }
     public float LoopPositionInAnalog { get; private set; }
-
-    //Conductor instance
     public static Conductor Instance { get; private set; }
 
 
@@ -31,7 +29,6 @@ public class Conductor : MonoBehaviour
 
     void Start()
     {
-        AudioSource = GetComponent<AudioSource>();
         SecondsPerBeat = 60f / SongBpm;
         ElapsedSongTime = (float)AudioSettings.dspTime;
 
@@ -52,6 +49,6 @@ public class Conductor : MonoBehaviour
 
     public void PlaySong()
     {
-        AudioSource.Play();
+        AudioManager.PlayMainAudioClip();
     }
 }
