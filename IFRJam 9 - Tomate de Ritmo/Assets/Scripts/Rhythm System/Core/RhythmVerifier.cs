@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class RhythmVerifier : MonoBehaviour
@@ -8,6 +9,7 @@ public class RhythmVerifier : MonoBehaviour
     [SerializeField] private Vector2 perfectHitOffset;
     private Conductor conductor;
     private VFXController VFXController;
+    private bool rhythmLimiter;
 
     public event Action OnHit;
     public event Action OnPerfectHit;
@@ -24,6 +26,8 @@ public class RhythmVerifier : MonoBehaviour
         OnHit += VFXController.PlayBeatVFX;
         OnPerfectHit += VFXController.PlayHitVFX;
         OnMiss += VFXController.PlayMissVFX;
+
+        EnableRhythmLimiter();
     }
 
     private void Update()
@@ -31,13 +35,39 @@ public class RhythmVerifier : MonoBehaviour
         VerifyRhythmAccuracy();
     }
 
+
     private void VerifyRhythmAccuracy()
     {
         if (inputController.LeftClick.WasPressedThisFrame())
         {
+            
+            if (!TimingAcordingLimit()) return;
+
             PositionBeatsInClick = PrimaryDecimal(conductor.SongPositionInBeats);
             CheckRegularTiming();
         }
+    }
+
+    public void DisableRhythmLimiter()
+    {
+        rhythmLimiter = false;
+    }
+
+    public void EnableRhythmLimiter()
+    {
+        rhythmLimiter = false;
+    }
+
+    private bool TimingAcordingLimit()
+    {
+        if (!rhythmLimiter) return true;
+
+        if ((int)conductor.SongPositionInBeats % 2 == 0)
+        {
+            return true;
+        }
+
+        else return false;
     }
 
     private void CheckRegularTiming()
@@ -76,6 +106,7 @@ public class RhythmVerifier : MonoBehaviour
             char primeiroDecimal = numberString[indexPoint + 1];
             return int.Parse(primeiroDecimal.ToString());
         }
+
         return 0;
     }
 

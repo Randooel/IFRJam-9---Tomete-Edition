@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip mainAudioClip;
     private GameObject audioPrefab;
 
-    private void Start()
+    private void Awake()
     {
         audioPrefab = new GameObject("Audio Source");
         audioPrefab.AddComponent<AudioSource>();
