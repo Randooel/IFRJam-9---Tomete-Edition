@@ -8,6 +8,8 @@ public class VFXController : MonoBehaviour
     [SerializeField] private GameObject hitVFXPrefab;
     [SerializeField] private GameObject missVFXPrefab;
 
+    [SerializeField] private Transform vfxPosition;
+
     //private VisualEffect beatVFX;
     //private VisualEffect hitVFX;
     //private VisualEffect missVFX;
@@ -21,21 +23,21 @@ public class VFXController : MonoBehaviour
 
     public void PlayBeatVFX()
     {
-        GameObject beatVFX = ObjectPoolManager.SpawnObject(beatVFXPrefab, Vector3.zero, Quaternion.identity, PoolType.VFX);
+        GameObject beatVFX = ObjectPoolManager.SpawnObject(beatVFXPrefab, vfxPosition.position, Quaternion.identity, PoolType.VFX);
         beatVFX.GetComponentInChildren<VisualEffect>().Play();
         StartCoroutine(ReleaseCoroutine(beatVFX));
     }
 
     public void PlayHitVFX()
     {
-        GameObject hitVFX = ObjectPoolManager.SpawnObject(hitVFXPrefab, Vector3.zero, Quaternion.identity, PoolType.VFX);
+        GameObject hitVFX = ObjectPoolManager.SpawnObject(hitVFXPrefab, vfxPosition.position, Quaternion.identity, PoolType.VFX);
         hitVFX.GetComponentInChildren<VisualEffect>().Play();
         StartCoroutine(ReleaseCoroutine(hitVFX));
     }
 
     public void PlayMissVFX()
     {
-        GameObject missVFX = ObjectPoolManager.SpawnObject(missVFXPrefab, Vector3.zero, Quaternion.identity, PoolType.VFX);
+        GameObject missVFX = ObjectPoolManager.SpawnObject(missVFXPrefab, vfxPosition.position, Quaternion.identity, PoolType.VFX);
         missVFX.GetComponentInChildren<VisualEffect>().Play();
         StartCoroutine(ReleaseCoroutine(missVFX));
     }
